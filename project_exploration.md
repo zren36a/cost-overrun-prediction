@@ -1,10 +1,10 @@
 #### SERX94: Exploratory Data Munging and Visualization
-#### TODO Analysis of Capital Project Costs 
-#### TODO Zhiguo Ren
-#### TODO October 22,2024
+#### title: Analysis of Capital Project Costs 
+#### author: Zhiguo Ren
+#### date: October 22,2024
 
 ## Basic Questions
-**Dataset Author(s):** School Construction Authority (SCA), City of New York
+**Dataset Author(s):** School Construction Authority (SCA), City of New York / NYC OpenData
 
 **Dataset Construction Date:** August 22, 2013
 
@@ -63,7 +63,7 @@ The broad coverage of project budgets and spending data, along with observed fin
 
 
 ## Data Transformations
-### Transformation N
+### Transformation
 
 **Description:** 
 1.Data Cleaning: Missing values were forward filled, and rows with non-numeric or erroneous values were removed.
