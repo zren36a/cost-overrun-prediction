@@ -1,0 +1,17 @@
+Summary Statistics for Quantitative Features:
+        Project Budget Amount  Final Estimate of Actual Costs Through End of Phase Amount  Total Phase Actual Spending Amount
+min                       5.0                                                         5.0                                 5.0
+max                 2060577.0                                                    811344.0                            418045.0
+median                89950.0                                                     94791.0                             44055.0
+
+Summary Statistics for Qualitative Features:
+Project Geographic District:
+  Number of Categories: 32
+  Most Frequent: 31
+  Least Frequent: 1
+
+Project Phase Name:
+  Number of Categories: 7
+  Most Frequent: design
+  Least Frequent: cm,art,f&e
+

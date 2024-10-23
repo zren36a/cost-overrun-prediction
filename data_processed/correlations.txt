@@ -1,0 +1,4 @@
+                                                            Project Budget Amount  Final Estimate of Actual Costs Through End of Phase Amount  Total Phase Actual Spending Amount
+Project Budget Amount                                                    1.000000                                                    0.681073                            0.494888
+Final Estimate of Actual Costs Through End of Phase Amount               0.681073                                                    1.000000                            0.587180
+Total Phase Actual Spending Amount                                       0.494888                                                    0.587180                            1.000000
