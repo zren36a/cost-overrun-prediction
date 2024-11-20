@@ -7,4 +7,5 @@ def run_workflow():
     subprocess.run(['python', 'wf_visualization.py'])
 
 if __name__ == "__main__":
+    print("Calculate the MD5 Hash below, then do other required works.")
     run_workflow()
