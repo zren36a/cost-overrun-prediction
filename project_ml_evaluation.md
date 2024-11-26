@@ -1,0 +1,41 @@
+#### SERX94: Machine Learning Evaluation
+#### TODO (title) Predictive Analysis of Cost Overruns in Engineering and Construction Projects
+#### TODO (author) Zhiguo Ren
+#### TODO (date) Nov 25.2024
+
+## Evaluation Metrics
+### Metric 1
+**Name:** Accuracy
+
+**Choice Justification:** Accuracy measures the proportion of correctly classified instances over the total instances, which is crucial in understanding the overall effectiveness of the models for our data.
+
+Interpretation:** The higher the accuracy, the better the model is at general classification.
+
+### Metric 2
+**Name:** Recall
+
+**Choice Justification:** Recall measures the proportion of actual positives correctly identified by the model, which is critical for our use case to minimize false negatives in project cost overruns.
+
+Interpretation:** A high recall indicates that the model effectively captures the majority of positive cases.
+
+## Alternative Models
+### Alternative 1:Optimized KNN
+**Construction:** The KNN model was optimized by fine-tuning hyperparameters such as the number of neighbors (n_neighbors), distance metric (metric), and weight type (weights) using cross-validation.
+
+**Evaluation:** 0.7404, Recall: 0.5018
+
+### Alternative 2: Logistic Regression
+**Construction:** Logistic Regression was optimized by fine-tuning hyperparameters such as the regularization strength (C) and penalty type (penalty) using cross-validation.
+
+**Evaluation:** 0.7644, Recall: 0.5230
+
+### Alternative 3: Random Forest
+**Construction:** The Random Forest model was optimized by fine-tuning parameters such as the number of estimators (n_estimators), maximum tree depth (max_depth), minimum samples per leaf (min_samples_leaf), and minimum samples for a split (min_samples_split) using cross-validation.
+
+**Evaluation:** 0.7519, Recall: 0.4700
+
+
+## Best Model
+
+**Model:** Logistic Regression
+**Reason:** Compared to other models' performance, Logistic Regression achieves the best balance between accuracy (0.7644) and recall (0.5230), making it the most suitable model for our problem.
