@@ -1,0 +1,4 @@
+Original KNN: Accuracy=0.7672, Recall=0.4947
+Optimized KNN: Accuracy=0.7404, Recall=0.5018
+Logistic Regression: Accuracy=0.7644, Recall=0.5230
+Random Forest: Accuracy=0.7519, Recall=0.4700
