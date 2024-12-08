@@ -39,3 +39,13 @@ Interpretation:** A high recall indicates that the model effectively captures th
 
 **Model:** Logistic Regression
 **Reason:** Compared to other models' performance, Logistic Regression achieves the best balance between accuracy (0.7644) and recall (0.5230), making it the most suitable model for our problem.
+
+## Improved Metrics with Custom Normalization Methods 
+To enhance model performance, a custom normalization method was explored. This method mapped categorical features to numeric values based on their correlation with cost overruns and binned numerical features into predefined ranges. By running the Python file of "wf_ml_evaluation_cus.py", which was coded with custom normalization method, we get: 
+
+Original KNN - Accuracy: 0.7261, Recall: 0.6678
+Optimized KNN - Accuracy: 0.7079, Recall: 0.5866
+Logistic Regression - Accuracy: 0.7816, Recall: 0.4346
+Random Forest - Accuracy: 0.7778, Recall: 0.5053
+
+We can see that the Original KNN outperformed with improved recall (66.78%). The custom normalization approach proved effective in aligning features with the domain-specific context.
