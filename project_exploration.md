@@ -28,6 +28,7 @@ DSF Number(s): Number used to identify project in Five Year Pan
 
 **Dataset File Hash(es):** MD5 Hash of Original File: c20307ead7faaf04a5fcc422016111b2
 **URL:** https://data.cityofnewyork.us/api/views/2xh6-psuq/rows.csv?accessType=DOWNLOAD
+The online dataset from the URL seems updated by the city of New York from time to time. For example, the file downloaded on December 7 has been updated compared to the file downloaded on October 22 used in this project, and the corresponding MD5 Hash code are also different.
 
 ## Interpretable Records
 ### Record 1
