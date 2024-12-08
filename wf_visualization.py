@@ -5,9 +5,8 @@ import numpy as np
 # Load the processed dataset
 data = pd.read_csv('data_processed/Capital_Project_Schedules_and_Budgets_cleaned.csv')
 
-
-# Generate summary statistics and visualizations
-def visualize_data(data):
+# Generate summary statistics and visualizations # 1
+def visualize_data_1(data):
     # Clean column names to remove extra spaces
     data.columns = data.columns.str.strip()
 
@@ -114,6 +113,125 @@ def visualize_data(data):
             plt.savefig(f'visuals/{col}_distribution.png')
             plt.show()
 
+#visualizations # 2
+def visualize_data_2():
+
+
+    # Define file paths
+    processed_file_path = "data_processed/Processed_Capital_Project_Schedules_and_Budgets.csv"
+    visuals_dir = "visuals/"
+    output_dir = "data_processed/"
+
+    # Load the processed CSV file
+    df = pd.read_csv(processed_file_path)
+    df.columns = df.columns.str.strip()
+
+    # Filter for valid rows
+    valid_data = df[df["Valid Row"] == True].copy()
+
+    # --------------------------------------
+    # 1. Plot for Project Phase Name Analysis
+    # --------------------------------------
+    phase_analysis = valid_data.groupby("Project Phase Name").agg(
+        Total_Frequency=("Project Phase Name", "size"),
+        Overrun_Frequency=("Cost Overrun", "sum")
+    ).reset_index()
+
+    phase_analysis["Overrun Rate (%)"] = (
+                phase_analysis["Overrun_Frequency"] / phase_analysis["Total_Frequency"] * 100).round(2)
+    phase_analysis = phase_analysis.sort_values(by="Overrun Rate (%)", ascending=False).reset_index(drop=True)
+
+    # Save to Excel
+    phase_output_file = output_dir + "Phase_Name_Overrun_Analysis.xlsx"
+    phase_analysis.to_excel(phase_output_file, index=False)
+
+    # Plot
+    plt.figure(figsize=(10, 6))
+    bars = plt.bar(phase_analysis["Project Phase Name"], phase_analysis["Overrun Rate (%)"], color='skyblue')
+    for bar in bars:
+        yval = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width() / 2, yval + 0.5, f'{yval:.2f}%', ha='center', va='bottom')
+    plt.title("Trend of Overrun Rate vs. Project Phase")
+    plt.xlabel("Project Phase Name")
+    plt.ylabel("Overrun Rate (%)")
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+    plt.grid(axis="y", linestyle="--", alpha=0.7)
+    plt.savefig(visuals_dir + "Phase_Name_Overrun_Bar_Chart.png")
+    plt.show()
+
+    # --------------------------------------
+    # 2. Plot for Project Type Analysis
+    # --------------------------------------
+    type_analysis = valid_data.groupby("Project Type").agg(
+        Total_Frequency=("Project Type", "size"),
+        Overrun_Frequency=("Cost Overrun", "sum")
+    ).reset_index()
+
+    type_analysis["Overrun Rate (%)"] = (
+                type_analysis["Overrun_Frequency"] / type_analysis["Total_Frequency"] * 100).round(2)
+    type_analysis = type_analysis.sort_values(by="Overrun Rate (%)", ascending=False).reset_index(drop=True)
+
+    # Save to Excel
+    type_output_file = output_dir + "Project_Type_Overrun_Analysis.xlsx"
+    type_analysis.to_excel(type_output_file, index=False)
+
+    # Plot
+    plt.figure(figsize=(10, 6))
+    bars = plt.bar(type_analysis["Project Type"], type_analysis["Overrun Rate (%)"], color='skyblue')
+    for bar in bars:
+        yval = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width() / 2, yval + 0.5, f'{yval:.2f}%', ha='center', va='bottom')
+    plt.title("Overrun Rate by Project Type")
+    plt.xlabel("Project Type")
+    plt.ylabel("Overrun Rate (%)")
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+    plt.grid(axis="y", linestyle="--", alpha=0.7)
+    plt.savefig(visuals_dir + "Project_Type_Overrun_Bar_Chart.png")
+    plt.show()
+
+    # --------------------------------------
+    # 3. Plot for Budget Overrun Analysis
+    # --------------------------------------
+    valid_data["Project Budget Amount"] = pd.to_numeric(valid_data["Project Budget Amount"], errors="coerce")
+
+    bin_edges = [0, 100000, 200000, 500000, 1000000, 5000000, 10000000, float("inf")]
+    bin_labels = ["0-100K", "100K-200K", "200K-500K", "500K-1M", "1M-5M", "5M-10M", "10M+"]
+    valid_data["Budget Bin"] = pd.cut(valid_data["Project Budget Amount"], bins=bin_edges, labels=bin_labels,
+                                      right=False)
+
+    trend_analysis = valid_data.groupby("Budget Bin", observed=False).agg(
+        Total_Projects=("Budget Bin", "size"),
+        Overrun_Projects=("Cost Overrun", "sum")
+    ).reset_index()
+
+    trend_analysis["Probability of Overrun(%)"] = (
+                trend_analysis["Overrun_Projects"] / trend_analysis["Total_Projects"] * 100).round(2)
+
+    # Save to Excel
+    budget_output_file = output_dir + "Budget_Overrun_Analysis.xlsx"
+    trend_analysis.to_excel(budget_output_file, index=False)
+
+    # Plot
+    plt.figure(figsize=(10, 6))
+    bars = plt.bar(trend_analysis["Budget Bin"], trend_analysis["Probability of Overrun(%)"], color='skyblue')
+    for bar in bars:
+        yval = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width() / 2, yval + 1, f'{yval:.2f}%', ha='center', va='bottom')
+    plt.title("Trend of Probability of Overrun vs. Project Budget Amount")
+    plt.xlabel("Project Budget Amount (Binned)")
+    plt.ylabel("Probability of Overrun (%)")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.grid(axis="y", linestyle="--", alpha=0.7)
+    plt.savefig(visuals_dir + "Budget_Overrun_Bar_Chart.png")
+    plt.show()
+
+    # Code logic from plot.py goes here (omitted for brevity; include the full logic for plots)
+
 
 if __name__ == "__main__":
-    visualize_data(data)
+    visualize_data_1(data)
+    visualize_data_2()
+
