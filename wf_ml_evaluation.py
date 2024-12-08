@@ -27,13 +27,13 @@ def split_data(data_path):
     print(f"Total rows: {len(data)}, Valid rows: {len(data_valid)}")
 
     # Select features and target
-    X = data_valid[["Project Type", "Project Phase Name", "Project Budget Amount"]]
+    X = data_valid[["Project Type ", "Project Phase Name", "Project Budget Amount"]]
     y = data_valid["Cost Overrun"]
 
     # One-Hot Encode categorical features
     encoder = OneHotEncoder(handle_unknown="ignore")
-    encoded_features = encoder.fit_transform(X[["Project Type", "Project Phase Name"]]).toarray()
-    encoded_feature_names = encoder.get_feature_names_out(["Project Type", "Project Phase Name"])
+    encoded_features = encoder.fit_transform(X[["Project Type ", "Project Phase Name"]]).toarray()
+    encoded_feature_names = encoder.get_feature_names_out(["Project Type ", "Project Phase Name"])
     encoded_df = pd.DataFrame(encoded_features, columns=encoded_feature_names, index=X.index)
 
     # Normalize "Project Budget Amount"
@@ -41,7 +41,7 @@ def split_data(data_path):
     X.loc[:, "Project Budget Amount"] = scaler.fit_transform(X[["Project Budget Amount"]])
 
     # Combine encoded and scaled features
-    X = pd.concat([X.drop(["Project Type", "Project Phase Name"], axis=1), encoded_df], axis=1)
+    X = pd.concat([X.drop(["Project Type ", "Project Phase Name"], axis=1), encoded_df], axis=1)
 
     # Split into training and testing datasets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
@@ -100,7 +100,7 @@ def evaluate_models():
 
 if __name__ == "__main__":
     # Split data
-    split_data("data_processed/Processed_Capital_Project_Schedules_and_Budgets.csv")
+    split_data("data_processed/Processed_2_Capital_Project_Schedules_and_Budgets.csv")
 
     # Train models and evaluate
     evaluate_models()
