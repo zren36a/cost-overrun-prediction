@@ -133,9 +133,9 @@ def evaluate_models():
         print(f"{model_name} - Accuracy: {accuracy:.4f}, Recall: {recall:.4f}")
 
     # Save results to evaluation/summary.txt
-    with open("evaluation/summary.txt", "w") as file:
+    with open("evaluation/summary_cus.txt", "w") as file:
         file.write("\n".join(results))
-    print("Evaluation results saved to 'evaluation/summary.txt'.")
+    print("Evaluation results saved to 'evaluation/_cus.txt'.")
 
 if __name__ == "__main__":
     # Split data
