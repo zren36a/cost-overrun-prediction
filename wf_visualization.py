@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Load the processed dataset
-data = pd.read_csv('data_processed/Capital_Project_Schedules_and_Budgets_cleaned.csv')
+data = pd.read_csv('data_processed/Processed_1_Capital_Project_Schedules_and_Budgets.csv')
 
 # Generate summary statistics and visualizations # 1
 def visualize_data_1(data):
@@ -118,7 +118,7 @@ def visualize_data_2():
 
 
     # Define file paths
-    processed_file_path = "data_processed/Processed_Capital_Project_Schedules_and_Budgets.csv"
+    processed_file_path = "data_processed/Processed_2_Capital_Project_Schedules_and_Budgets.csv"
     visuals_dir = "visuals/"
     output_dir = "data_processed/"
 
@@ -142,8 +142,8 @@ def visualize_data_2():
     phase_analysis = phase_analysis.sort_values(by="Overrun Rate (%)", ascending=False).reset_index(drop=True)
 
     # Save to Excel
-    phase_output_file = output_dir + "Phase_Name_Overrun_Analysis.xlsx"
-    phase_analysis.to_excel(phase_output_file, index=False)
+    #phase_output_file = output_dir + "Phase_Name_Overrun_Analysis.xlsx"
+    #phase_analysis.to_excel(phase_output_file, index=False)
 
     # Plot
     plt.figure(figsize=(10, 6))
@@ -173,8 +173,8 @@ def visualize_data_2():
     type_analysis = type_analysis.sort_values(by="Overrun Rate (%)", ascending=False).reset_index(drop=True)
 
     # Save to Excel
-    type_output_file = output_dir + "Project_Type_Overrun_Analysis.xlsx"
-    type_analysis.to_excel(type_output_file, index=False)
+    #type_output_file = output_dir + "Project_Type_Overrun_Analysis.xlsx"
+    #type_analysis.to_excel(type_output_file, index=False)
 
     # Plot
     plt.figure(figsize=(10, 6))
@@ -210,8 +210,8 @@ def visualize_data_2():
                 trend_analysis["Overrun_Projects"] / trend_analysis["Total_Projects"] * 100).round(2)
 
     # Save to Excel
-    budget_output_file = output_dir + "Budget_Overrun_Analysis.xlsx"
-    trend_analysis.to_excel(budget_output_file, index=False)
+    #budget_output_file = output_dir + "Budget_Overrun_Analysis.xlsx"
+    #trend_analysis.to_excel(budget_output_file, index=False)
 
     # Plot
     plt.figure(figsize=(10, 6))
